@@ -9,6 +9,7 @@ import { Montserrat } from "next/font/google";
 
 import ScrollWatcher from "./ScrollWatcher";
 import GoogleAnalytics from "./GoogleAnalytics";
+import Crisp from "./Crisp";
 
 const montserrat = Montserrat({
   weights: [700],
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
         {children}
         <ScrollWatcher />
         <GoogleAnalytics />
+        <Crisp />
       </body>
     </html>
   );
