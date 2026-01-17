@@ -1,14 +1,11 @@
 import * as React from "react";
 import Head from "next/head";
-import { Layout, LinkButton, RotatingLogo } from "/components";
+import Link from "next/link";
+import { Layout, LinkButton, RotatingLogo, ClipboardCopy, WaveCta } from "components";
 
 import styles from "./Contact.module.css";
-
-import Link from "next/link";
-import { WaveCta } from "../../pages";
 import ContactPhone from "./ContactPhone";
 import HoursTable from "./HoursTable";
-import { ClipboardCopy } from "components";
 
 const ContactPage = ({ searchParams }) => {
   return (

@@ -25,3 +25,5 @@ export { default as SiteNav } from "./SiteNav";
 export { default as TestimonialsReel } from "./TestimonialsReel";
 export { default as ThreeDotLoader } from "./ThreeDotLoader";
 export { default as ToggleMenu } from "./ToggleMenu";
+export { default as HowToSteps } from "./HowToSteps";
+export { default as WaveCta } from "./WaveCta";

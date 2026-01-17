@@ -1,6 +1,4 @@
-import { FixedFooter, SiteFooter, SiteNav } from "components";
-
-import { HowToSteps, WaveCta } from "pages/index";
+import { FixedFooter, SiteFooter, SiteNav, HowToSteps, WaveCta } from "components";
 
 const GalleryLayout = ({ children }) => {
   return (

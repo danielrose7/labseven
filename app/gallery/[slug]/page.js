@@ -6,7 +6,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import styles from "../gallery.module.css";
-import productStyles from "pages/product/[manufacturerSkuCode]/product.module.css";
+import productStyles from "styles/product.module.css";
 
 import ItemGallery from "./ItemGallery";
 

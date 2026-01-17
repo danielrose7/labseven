@@ -10,7 +10,7 @@ import {
   getProductCategory,
 } from "../../../lib/products";
 
-import productStyles from "./product.module.css";
+import productStyles from "styles/product.module.css";
 import { ProductCalculator } from "../../../components";
 
 export async function getStaticPaths() {

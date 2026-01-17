@@ -1,10 +1,7 @@
-import { FixedFooter, SiteFooter, SiteNav, ServicesReel } from "components";
+import { Suspense } from "react";
+import { FixedFooter, SiteFooter, SiteNav, ServicesReel, WaveCta } from "components";
 
 import styles from "./location.module.css";
-
-import { Suspense } from "react";
-
-import { WaveCta } from "pages/index";
 
 const LocationLayout = ({ children }) => {
   return (

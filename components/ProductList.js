@@ -13,7 +13,7 @@ import {
 import ShirtlessGuy from "public/assets/Catalog/ShirtlessGuy.svg";
 
 import styles from "./ProductList.module.css";
-import homeStyles from "../pages/Home.module.css";
+import homeStyles from "styles/Home.module.css";
 
 const LOADING_ADJECTIVES = [
   "Awesome",

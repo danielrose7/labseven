@@ -12,7 +12,7 @@ import CopyProduct from "public/assets/Order/CopyProduct.svg";
 import RemoveProduct from "public/assets/Order/RemoveProduct.svg";
 
 import styles from "./OrderForm.module.css";
-import homeStyles from "/pages/Home.module.css";
+import homeStyles from "styles/Home.module.css";
 
 import { stringify } from "qs";
 import Select from "react-select";
@@ -67,23 +67,8 @@ export async function getStaticProps({ _params }) {
   };
 }
 
-export const buildOptions = (product) => {
-  let label = product.Name + " - " + product.ManufacturerSku;
-  if (label.startsWith(product.Manufacturer)) {
-    label = label.substring(product.Manufacturer.length + 1);
-  }
-
-  return {
-    asOption: {
-      value: product.manufacturerSkuCode,
-      label,
-    },
-    asSelectedOption: {
-      value: product.manufacturerSkuCode,
-      label: product.ManufacturerSku,
-    },
-  };
-};
+import { buildOptions } from "lib/buildOptions";
+export { buildOptions }; // re-export for backwards compatibility
 
 const IN_FLIGHT_REQUESTS = new Set();
 

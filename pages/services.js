@@ -25,7 +25,7 @@ import HeroCollection from "public/assets/Services/Services_HeroCollection.png";
 import HeroArrow from "public/assets/Arrows/Services_Hero.svg";
 
 import styles from "./Services.module.css";
-import homeStyles from "./Home.module.css";
+import homeStyles from "styles/Home.module.css";
 
 import { SectionDivider } from ".";
 import { useRouter } from "next/router";
@@ -34,32 +34,8 @@ const intersectionObsOptions = {
   threshold: [0.05, 0.1, 0.2, 0.25, 0.5, 0.75, 0.8, 0.9, 0.95],
 };
 
-export const SERVICE_SECTIONS = [
-  {
-    id: "ScreenPrinting",
-    name: "Screen Printing",
-  },
-  {
-    id: "Embroidery",
-    name: "Embroidery",
-  },
-  {
-    id: "StickersDecals",
-    name: "Stickers & Decals",
-  },
-  {
-    id: "VinylBannersSigns",
-    name: "Vinyl Banners & Signs",
-  },
-  {
-    id: "DigitalHeatTransfer",
-    name: "Digital Heat Transfer",
-  },
-  {
-    id: "PromotionalProducts",
-    name: "Promotional Products",
-  },
-];
+import { SERVICE_SECTIONS } from "lib/services";
+export { SERVICE_SECTIONS }; // re-export for backwards compatibility
 
 const ServicesPage = () => {
   // watch navigation

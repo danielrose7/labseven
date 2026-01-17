@@ -15,7 +15,7 @@ import StartArrow from "public/assets/Order/StartArrow.svg";
 import Step1_Shirt from "public/assets/Home/Step1_Shirt.svg";
 
 import styles from "./OrderForm.module.css";
-import homeStyles from "/pages/Home.module.css";
+import homeStyles from "styles/Home.module.css";
 import isEqual from "react-fast-compare";
 
 const AddToCart = () => {

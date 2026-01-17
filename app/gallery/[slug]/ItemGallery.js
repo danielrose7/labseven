@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 
-import productStyles from "pages/product/[manufacturerSkuCode]/product.module.css";
+import productStyles from "styles/product.module.css";
 
 // per demo at
 function ImageMagnifier({ image }) {

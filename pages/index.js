@@ -153,7 +153,7 @@ import Reviews_Arrow from "public/assets/Home/Reviews_Arrow.svg";
 import Consultation_Phone from "public/assets/Home/Consultation_Phone.svg";
 import CTA_Namaste from "public/assets/Home/CTA_Namaste.png";
 
-import styles from "./Home.module.css";
+import styles from "styles/Home.module.css";
 
 const ACTION_VERBS = ["Wear", "Share"];
 

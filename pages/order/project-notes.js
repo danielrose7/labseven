@@ -11,7 +11,7 @@ import Step3_Upload from "public/assets/Home/Step3_Upload.svg";
 import UploadedIcon from "public/assets/Order/UploadedIcon.svg";
 
 import styles from "./OrderForm.module.css";
-import homeStyles from "/pages/Home.module.css";
+import homeStyles from "styles/Home.module.css";
 import utilStyles from "/styles/utils.module.css";
 import { useOrderForm } from "lib/orderForm";
 import useFileUpload from "lib/useFileUpload";

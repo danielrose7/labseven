@@ -11,7 +11,7 @@ import StartArrow from "public/assets/Order/StartArrow.svg";
 import Step2_Sizes from "public/assets/Home/Step2_Sizes.svg";
 
 import styles from "./OrderForm.module.css";
-import homeStyles from "/pages/Home.module.css";
+import homeStyles from "styles/Home.module.css";
 
 import { useOrderForm } from "lib/orderForm";
 

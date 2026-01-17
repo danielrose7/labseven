@@ -4,7 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { SERVICE_SECTIONS } from "pages/services";
+import { SERVICE_SECTIONS } from "lib/services";
 import styles from "./SiteNav.module.css";
 
 /** passed as props in /products -> CategoryMenu */

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from ".";
 import { useCarousel } from "./TestimonialsReel";
 
-import homeStyles from "../pages/Home.module.css";
+import homeStyles from "styles/Home.module.css";
 import styles from "./ServicesReel.module.css";
 
 import ArrowLeft from "../public/assets/Arrows/Left.svg";

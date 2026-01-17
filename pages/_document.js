@@ -8,7 +8,7 @@ const Document = () => {
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="shortcut_icon.png"
+          href="/shortcut_icon.png"
         />
 
         {/* fonts tied to Justin's account */}

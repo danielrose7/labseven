@@ -10,7 +10,7 @@ import axios from "axios";
 import { stringify } from "qs";
 
 import calcStyles from "./ProductCalculator.module.css";
-import { buildOptions } from "pages/order/pick-products";
+import { buildOptions } from "lib/buildOptions";
 
 // https://demo.inksoft.com/demo?Page=Api2#methods_GetQuote
 const QUOTE_ENDPOINT =
