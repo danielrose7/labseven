@@ -4,6 +4,7 @@ import * as React from "react";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 import { Button, LinkButton } from ".";
 import { titleize, formatUSD } from "../lib/utils";
+import { trackEvent } from "../lib/googleAnalytics";
 
 import axios from "axios";
 import { stringify } from "qs";
@@ -158,6 +159,7 @@ const ProductCalculator = ({ productData }) => {
           try {
             const res = await getQuote(productData, values);
             setQuote(res);
+            trackEvent("form_submit", { form_name: "get_quote" });
           } catch (err) {
             setError(err);
           }
