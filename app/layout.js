@@ -6,10 +6,11 @@ import * as React from "react";
 import "styles/globals.css";
 
 import { Montserrat } from "next/font/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 import ScrollWatcher from "./ScrollWatcher";
-import GoogleAnalytics from "./GoogleAnalytics";
 import Crisp from "./Crisp";
+import { GTM_ID } from "../lib/googleAnalytics";
 
 const montserrat = Montserrat({
   weights: [700],
@@ -37,10 +38,10 @@ export default function RootLayout({ children }) {
       className={montserrat.variable}
       style={{ "--navTop": "0px" }} // updated by ScrollWatcher
     >
+      {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <body>
         {children}
         <ScrollWatcher />
-        <GoogleAnalytics />
         <Crisp />
       </body>
     </html>

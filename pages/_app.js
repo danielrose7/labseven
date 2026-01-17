@@ -1,7 +1,8 @@
 import * as React from "react";
 import Script from "next/script";
 import { useRouter } from "next/router";
-import { GOOGLE_ANALYTICS_ID, pageview } from "../lib/googleAnalytics";
+import { GoogleTagManager } from "@next/third-parties/google";
+import { GTM_ID, pageview } from "../lib/googleAnalytics";
 
 import "../styles/globals.css";
 
@@ -18,22 +19,8 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <Component {...pageProps} />
-      {!!GOOGLE_ANALYTICS_ID && (
-        <>
-          <Script
-            defer
-            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-            strategy="lazyOnload"
-          />
-          <Script defer id="google-analytics" strategy="lazyOnload">
-            {`window.dataLayer = window.dataLayer || [];
-            function gtag(){window.dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GOOGLE_ANALYTICS_ID}');`}
-          </Script>
-        </>
-      )}
       <Script
         id="crisp-init"
         strategy="afterInteractive"
