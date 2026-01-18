@@ -193,7 +193,7 @@ const ServicesPage = () => {
                 className={styles.hero__arrow}
                 alt="Hand drawn arrow pointing down the page"
               />
-              <LinkButton href={`#${services[0].id}`} scroll={false}>
+              <LinkButton href={`#${services[0].id}`}>
                 Browse Services
               </LinkButton>
             </div>
@@ -220,7 +220,6 @@ const ServicesPage = () => {
                 <li key={id} data-section-id={id}>
                   <Link
                     href={`#${id}`}
-                    scroll={false}
                     className={[
                       styles.sectionNav__link,
                       serviceIndex === activeServiceIndex &&
