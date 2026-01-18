@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 
+import { trackEvent } from "lib/googleAnalytics";
 import { isMobile } from "lib/utils";
 
 import styles from "./LinkButton.module.css";
@@ -12,15 +15,25 @@ const CallLink = ({
   locationSlug,
   ...props
 }) => {
+  const mobile = isMobile();
   let href = contactLink;
-  if (isMobile()) {
+  if (mobile) {
     href = telLink;
   } else if (locationSlug) {
     href = `${contactLink}?location=${locationSlug}`;
   }
 
+  const handleClick = () => {
+    if (mobile) {
+      trackEvent("phone_click", {
+        location: locationSlug || "default",
+        phone: telLink,
+      });
+    }
+  };
+
   return (
-    <Link className={styles[className]} href={href} {...props}>
+    <Link className={styles[className]} href={href} onClick={handleClick} {...props}>
       {props.children || "Call Us"}
     </Link>
   );

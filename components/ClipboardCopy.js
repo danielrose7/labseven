@@ -1,8 +1,8 @@
 "use client";
 
-import { copy } from "@vercel/blob";
 import * as React from "react";
 
+import { trackEvent } from "lib/googleAnalytics";
 import utilStyles from "styles/utils.module.css";
 
 const CheckIcon = () => {
@@ -48,6 +48,9 @@ const ClipboardCopy = ({ value }) => {
   const onCopy = () => {
     // Copy to clipboard
     navigator.clipboard.writeText(value);
+
+    // Track the copy event
+    trackEvent("copy_contact", { value });
 
     // Update the button text
     setIsCopied(true);

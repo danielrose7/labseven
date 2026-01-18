@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+
+import { trackEvent } from "lib/googleAnalytics";
 import styles from "./SiteFooter.module.css";
 
 const SiteFooter = () => {
@@ -47,7 +49,17 @@ const SiteFooter = () => {
             </p>
             <p>
               <strong>Phone</strong>:{" "}
-              <a href="tel:3038143389">(303) 814-3389</a>
+              <a
+                href="tel:3038143389"
+                onClick={() =>
+                  trackEvent("phone_click", {
+                    location: "site_footer",
+                    phone: "(303) 814-3389",
+                  })
+                }
+              >
+                (303) 814-3389
+              </a>
             </p>
             <p>
               <strong>Email</strong>:{" "}

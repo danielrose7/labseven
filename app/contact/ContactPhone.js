@@ -2,10 +2,9 @@ import * as React from "react";
 
 import { getAllLocationSlugs, getLocationMeta } from "lib/locations";
 
-import Link from "next/link";
-
 import { isMobile } from "lib/utils";
 import { ClipboardCopy } from "components";
+import TrackedPhoneLink from "./TrackedPhoneLink";
 
 export async function getLocationProps() {
   const allSlugs = getAllLocationSlugs();
@@ -39,7 +38,9 @@ export default async function ContactPhoneWrapper({ locationSlug }) {
     if (isMobile()) {
       return (
         <>
-          <Link href={telLink}>{phoneFormatted}</Link>
+          <TrackedPhoneLink href={telLink} location={locationSlug}>
+            {phoneFormatted}
+          </TrackedPhoneLink>
           <ClipboardCopy value={phoneFormatted} />
         </>
       );
@@ -55,7 +56,9 @@ export default async function ContactPhoneWrapper({ locationSlug }) {
   if (isMobile()) {
     return (
       <>
-        <Link href={hqTelLink}>{hqPhoneFormatted}</Link>
+        <TrackedPhoneLink href={hqTelLink} location="englewood">
+          {hqPhoneFormatted}
+        </TrackedPhoneLink>
         <ClipboardCopy value={hqPhoneFormatted} />
       </>
     );

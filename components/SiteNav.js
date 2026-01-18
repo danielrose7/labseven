@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { trackEvent } from "lib/googleAnalytics";
 import { SERVICE_SECTIONS } from "lib/services";
 import styles from "./SiteNav.module.css";
 
@@ -197,6 +198,12 @@ const SiteNav = () => {
                         <a
                           href="tel:+13038143389"
                           className={styles.callNow__flyout__number}
+                          onClick={() =>
+                            trackEvent("phone_click", {
+                              location: "Englewood",
+                              phone: "(303) 814-3389",
+                            })
+                          }
                         >
                           {`(303) 814-3389`}
                         </a>
@@ -243,6 +250,12 @@ const SiteNav = () => {
                           <a
                             href={location.telHref}
                             className={styles.callNow__flyout__number}
+                            onClick={() =>
+                              trackEvent("phone_click", {
+                                location: location.name,
+                                phone: location.number,
+                              })
+                            }
                           >
                             {location.number}
                           </a>

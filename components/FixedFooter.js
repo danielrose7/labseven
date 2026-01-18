@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { trackEvent } from "lib/googleAnalytics";
 import styles from "./FixedFooter.module.css";
 
 const LINKS = [
@@ -28,7 +31,17 @@ const FixedFooter = () => {
           );
         })}
         <li className={styles.AccentItem}>
-          <Link href="tel:+13038143389">Call Now</Link>
+          <Link
+            href="tel:+13038143389"
+            onClick={() =>
+              trackEvent("phone_click", {
+                location: "fixed_footer",
+                phone: "(303) 814-3389",
+              })
+            }
+          >
+            Call Now
+          </Link>
         </li>
       </ul>
     </nav>
