@@ -1,8 +1,35 @@
+import { useState, useEffect, useRef } from "react";
 import styles from "./SearchBar.module.css";
 
 export const SEARCH_KEYS = ["q", "sort"];
 
-const SearchBar = ({ query, setQuery }) => {
+const SearchBar = ({ query, setQuery, debounceMs = 300 }) => {
+  const [localSearch, setLocalSearch] = useState(query.q || "");
+  const isFirstMount = useRef(true);
+
+  // Sync local state when URL query changes externally
+  useEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
+    }
+    setLocalSearch(query.q || "");
+  }, [query.q]);
+
+  // Debounce URL updates
+  useEffect(() => {
+    const resetPage = query.page && query.page != 1;
+    const pageQuery = resetPage ? { page: 1 } : {};
+
+    const handler = setTimeout(() => {
+      if (localSearch !== (query.q || "")) {
+        setQuery({ ...pageQuery, q: localSearch });
+      }
+    }, debounceMs);
+
+    return () => clearTimeout(handler);
+  }, [localSearch, debounceMs, setQuery, query.page, query.q]);
+
   const resetPage = query.page && query.page != 1;
   const pageQuery = resetPage ? { page: 1 } : {};
 
@@ -43,10 +70,8 @@ const SearchBar = ({ query, setQuery }) => {
         </span>
         <input
           type="search"
-          onChange={(event) =>
-            setQuery({ ...pageQuery, q: event.target.value })
-          }
-          value={query.q || ""}
+          onChange={(event) => setLocalSearch(event.target.value)}
+          value={localSearch}
           placeholder={"Search products..."}
         />
       </div>
