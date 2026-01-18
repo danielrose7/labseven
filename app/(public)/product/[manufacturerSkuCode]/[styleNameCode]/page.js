@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import { ProductDetailClient } from "components";
 import {
   getAllProducts,
@@ -31,8 +33,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { manufacturerSkuCode, styleNameCode } = await params;
   const productData = await getProductByStyle(manufacturerSkuCode, styleNameCode);
-  const activeStyle = productData.activeStyle;
 
+  if (!productData?.activeStyle) {
+    return { title: "Product Not Found" };
+  }
+
+  const activeStyle = productData.activeStyle;
   const title = `${productData.Manufacturer} - ${productData.ManufacturerSku} // ${activeStyle.Name}`;
   const description =
     productData.LongDescription ||
@@ -56,6 +62,10 @@ export async function generateMetadata({ params }) {
 const ProductPage = async ({ params }) => {
   const { manufacturerSkuCode, styleNameCode } = await params;
   const productData = await getProductByStyle(manufacturerSkuCode, styleNameCode);
+
+  if (!productData?.Categories) {
+    notFound();
+  }
 
   const category =
     productData.Categories.find((cat) => !!cat.subCategoryCode) ||
