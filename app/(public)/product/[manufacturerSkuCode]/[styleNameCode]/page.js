@@ -63,7 +63,7 @@ const ProductPage = async ({ params }) => {
   const { manufacturerSkuCode, styleNameCode } = await params;
   const productData = await getProductByStyle(manufacturerSkuCode, styleNameCode);
 
-  if (!productData?.Categories) {
+  if (!productData) {
     notFound();
   }
 
