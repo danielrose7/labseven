@@ -12,6 +12,7 @@ const ColorOption = ({ style, isActive = false, replace = false }) => {
         replace={replace}
         scroll={!replace}
         title={style.Name}
+        onClick={(e) => e.stopPropagation()}
         className={`${styles.styleOption}${
           isActive ? ` ${styles.styleOptionActive}` : ""
         }`}
