@@ -11,6 +11,9 @@ export const metadata = {
   title: "Shop our products",
 };
 
+// Revalidate cached pages after 24 hours
+export const revalidate = 86400;
+
 export async function generateStaticParams() {
   const allCategories = await getAllProductCategories();
   return allCategories.map((category) => ({

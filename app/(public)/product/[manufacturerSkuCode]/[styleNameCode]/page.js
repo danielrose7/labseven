@@ -5,11 +5,18 @@ import {
   getProductCategory,
 } from "lib/products";
 
+// Allow on-demand generation of paths not in generateStaticParams
+export const dynamicParams = true;
+
+// Revalidate cached pages after 24 hours
+export const revalidate = 86400;
+
 export async function generateStaticParams() {
   const allProducts = await getAllProducts();
   const params = [];
 
-  for (const product of allProducts) {
+  // Only pre-render featured products (others generated on-demand via ISR)
+  for (const product of allProducts.filter((p) => p.Featured)) {
     for (const style of product.Styles) {
       params.push({
         manufacturerSkuCode: product.manufacturerSkuCode,

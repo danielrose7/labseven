@@ -7,6 +7,9 @@ export const metadata = {
   title: "Shop our products",
 };
 
+// Revalidate cached pages after 24 hours
+export const revalidate = 86400;
+
 const ProductsPage = async () => {
   const allProducts = await getAllProducts();
   const [productData, pagination] = paginate(allProducts, 1, 16);
