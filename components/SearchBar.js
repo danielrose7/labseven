@@ -1,37 +1,25 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+import { useDebounceCallback } from "@react-hook/debounce";
 import styles from "./SearchBar.module.css";
 
 export const SEARCH_KEYS = ["q", "sort"];
 
-const SearchBar = ({ query, setQuery, debounceMs = 300 }) => {
+const SearchBar = ({ query, setQuery }) => {
   const [localSearch, setLocalSearch] = useState(query.q || "");
-  const isFirstMount = useRef(true);
-
-  // Sync local state when URL query changes externally
-  useEffect(() => {
-    if (isFirstMount.current) {
-      isFirstMount.current = false;
-      return;
-    }
-    setLocalSearch(query.q || "");
-  }, [query.q]);
-
-  // Debounce URL updates
-  useEffect(() => {
-    const resetPage = query.page && query.page != 1;
-    const pageQuery = resetPage ? { page: 1 } : {};
-
-    const handler = setTimeout(() => {
-      if (localSearch !== (query.q || "")) {
-        setQuery({ ...pageQuery, q: localSearch });
-      }
-    }, debounceMs);
-
-    return () => clearTimeout(handler);
-  }, [localSearch, debounceMs, setQuery, query.page, query.q]);
 
   const resetPage = query.page && query.page != 1;
   const pageQuery = resetPage ? { page: 1 } : {};
+
+  const debouncedSetQuery = useDebounceCallback(
+    (value) => setQuery({ ...pageQuery, q: value }),
+    300
+  );
+
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setLocalSearch(value);
+    debouncedSetQuery(value);
+  };
 
   return (
     <div className={styles.searchBar}>
@@ -70,7 +58,7 @@ const SearchBar = ({ query, setQuery, debounceMs = 300 }) => {
         </span>
         <input
           type="search"
-          onChange={(event) => setLocalSearch(event.target.value)}
+          onChange={handleSearchChange}
           value={localSearch}
           placeholder={"Search products..."}
         />
