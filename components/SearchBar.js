@@ -21,6 +21,9 @@ const SearchBar = ({ query, setQuery, isLoading }) => {
     debouncedSetQuery(value);
   };
 
+  const isPending = localSearch !== (query.q || "");
+  const showSpinner = isLoading || isPending;
+
   return (
     <div className={styles.searchBar}>
       <div className={styles.searchBar__inputContainer}>
@@ -45,7 +48,7 @@ const SearchBar = ({ query, setQuery, isLoading }) => {
         </select>
       </div>
       <div className={styles.searchBar__inputContainer}>
-        {isLoading ? (
+        {showSpinner ? (
           <span className={styles.spinner} aria-label="Loading" />
         ) : (
           <span role="img" aria-label="Magnifying Glass">
