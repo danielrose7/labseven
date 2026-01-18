@@ -48,7 +48,7 @@ const ProductsClient = ({
         />
       </aside>
       <main className={productsStyles.grid__main}>
-        <SearchBar query={query} setQuery={setQuery} />
+        <SearchBar query={query} setQuery={setQuery} isLoading={isLoading} />
         {!categoryData && <hr />}
         <ProductList
           products={data.products}

@@ -4,7 +4,7 @@ import styles from "./SearchBar.module.css";
 
 export const SEARCH_KEYS = ["q", "sort"];
 
-const SearchBar = ({ query, setQuery }) => {
+const SearchBar = ({ query, setQuery, isLoading }) => {
   const [localSearch, setLocalSearch] = useState(query.q || "");
 
   const resetPage = query.page && query.page != 1;
@@ -45,17 +45,21 @@ const SearchBar = ({ query, setQuery }) => {
         </select>
       </div>
       <div className={styles.searchBar__inputContainer}>
-        <span role="img" aria-label="Magnifying Glass">
-          <svg
-            fill="currentColor"
-            viewBox="0 0 13 13"
-            height="15"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M8.87 8.16l3.25 3.25-.7.71-3.26-3.25a5 5 0 1 1 .7-.7zM5 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
-          </svg>
-        </span>
+        {isLoading ? (
+          <span className={styles.spinner} aria-label="Loading" />
+        ) : (
+          <span role="img" aria-label="Magnifying Glass">
+            <svg
+              fill="currentColor"
+              viewBox="0 0 13 13"
+              height="15"
+              width="15"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M8.87 8.16l3.25 3.25-.7.71-3.26-3.25a5 5 0 1 1 .7-.7zM5 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
+            </svg>
+          </span>
+        )}
         <input
           type="search"
           onChange={handleSearchChange}
