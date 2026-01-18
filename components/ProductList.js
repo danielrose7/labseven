@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import LegacyImage from "next/legacy/image";
 import Link from "next/link";

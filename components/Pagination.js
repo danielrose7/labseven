@@ -1,7 +1,9 @@
+"use client";
+
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import pageStyles from "./Pagination.module.css";
 
@@ -9,7 +11,13 @@ import ArrowLeft from "public/assets/Arrows/Left.svg";
 import ArrowRight from "../public/assets/Arrows/Right.svg";
 
 const PageItem = ({ pageNumber, active, children, placeholder = false }) => {
-  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Build new URL with updated page param
+  const params = new URLSearchParams(searchParams.toString());
+  params.set("page", pageNumber);
+  const href = `${pathname}?${params.toString()}`;
 
   return (
     <li
@@ -20,14 +28,7 @@ const PageItem = ({ pageNumber, active, children, placeholder = false }) => {
       {placeholder ? (
         <a>{children}</a>
       ) : (
-        <Link
-          href={{
-            pathname: router.pathname,
-            query: { ...router.query, page: pageNumber },
-          }}
-          shallow
-          replace
-        >
+        <Link href={href} replace scroll={false}>
           {children}
         </Link>
       )}

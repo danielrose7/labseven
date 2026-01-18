@@ -27,3 +27,6 @@ export { default as ThreeDotLoader } from "./ThreeDotLoader";
 export { default as ToggleMenu } from "./ToggleMenu";
 export { default as HowToSteps } from "./HowToSteps";
 export { default as WaveCta } from "./WaveCta";
+export { default as SectionDivider } from "./SectionDivider";
+export { default as ProductsClient } from "./ProductsClient";
+export { default as ProductDetailClient } from "./ProductDetailClient";

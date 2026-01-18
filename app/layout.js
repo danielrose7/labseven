@@ -1,6 +1,3 @@
-// This is server-side rendered
-// As of Nov '23 it's only being used by a subset of the site
-
 import * as React from "react";
 
 import "styles/globals.css";
@@ -10,6 +7,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 
 import ScrollWatcher from "./ScrollWatcher";
 import Crisp from "./Crisp";
+import AnalyticsTracker from "./AnalyticsTracker";
 import { GTM_ID } from "../lib/googleAnalytics";
 
 const montserrat = Montserrat({
@@ -26,9 +24,15 @@ const description =
 export const metadata = {
   title: siteTitle,
   description,
-  "og:type": "website",
-  "og:title": siteTitle,
-  "og:description": description,
+  openGraph: {
+    type: "website",
+    title: siteTitle,
+    description,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/shortcut_icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -38,11 +42,16 @@ export default function RootLayout({ children }) {
       className={montserrat.variable}
       style={{ "--navTop": "0px" }} // updated by ScrollWatcher
     >
+      <head>
+        {/* fonts tied to Justin's account */}
+        <link rel="stylesheet" href="https://use.typekit.net/fqt7rom.css" />
+      </head>
       {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <body>
         {children}
         <ScrollWatcher />
         <Crisp />
+        <AnalyticsTracker />
       </body>
     </html>
   );

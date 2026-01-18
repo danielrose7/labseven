@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 
 import styles from "./CategoryMenu.module.css";
 
@@ -10,11 +12,11 @@ const CategoryMenu = ({
   activeCategory,
   activeSubCategory = {},
 }) => {
-  const { query } = useRouter();
+  const searchParams = useSearchParams();
   const hasActiveSubCategory = !!activeSubCategory.ID;
   const searchQuery = {};
   for (const searchKey of SEARCH_KEYS) {
-    const searchValue = query[searchKey];
+    const searchValue = searchParams.get(searchKey);
     if (searchValue) searchQuery[searchKey] = searchValue;
   }
 
