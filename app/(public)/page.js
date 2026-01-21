@@ -152,7 +152,7 @@ const HomePage = () => {
             </h1>
             <h2>Get Quality Custom Apparel in 7 Days.</h2>
             <div className={styles.linkContainer}>
-              <LinkButton href="#your-plan" scroll={false}>
+              <LinkButton href="#your-plan">
                 Start Project
               </LinkButton>
               <LinkButton href="/products" className="LinkButtonAlternate">
