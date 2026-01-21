@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 // Called by Vercel Cron weekly to refresh product data
 // Manual triggers use the admin page button instead
 export async function GET(request) {

@@ -4,6 +4,8 @@ import { Dropbox } from "dropbox";
 import fetch from "cross-fetch";
 import { applyTokens } from "lib/utils";
 
+export const dynamic = "force-dynamic";
+
 const dbxConfig = {
   fetch,
   clientId: process.env.NEXT_PUBLIC_DROPBOX_CLIENT_ID,

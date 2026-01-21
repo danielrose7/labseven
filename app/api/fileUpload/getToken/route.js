@@ -6,6 +6,9 @@ import fetch from "cross-fetch";
 import { applyTokens } from "lib/utils";
 import { stringify } from "qs";
 
+// Disable caching - this route returns dynamic auth tokens
+export const dynamic = "force-dynamic";
+
 // https://dropbox.com/developers/documentation/http/documentation#oauth2-token
 // https://github.com/dropbox/dropbox-sdk-js/blob/44dd638cc5fc6d55fd895047b6de43008e799313/src/auth.js#L357-L394
 const refreshDropboxToken = async (dropboxBlob) => {
@@ -64,13 +67,17 @@ export async function GET() {
       );
     }
   } catch (error) {
-    // is missing or is NOT valid
-    if (error?.status === 401) {
-      // 401's => try refresh
-      console.log(" - token has expired or been revoked");
+    // is missing or is NOT valid - attempt refresh for any validation failure
+    // Dropbox SDK errors may have status at error.status or error.error?.status
+    const errorStatus = error?.status || error?.error?.status;
+    console.log(`- token validation failed (status: ${errorStatus})`, error?.message || error);
+
+    // Attempt refresh for any token validation failure, not just 401
+    if (kvDropboxBlob.refreshToken) {
+      console.log("- attempting token refresh");
       token = await refreshDropboxToken(kvDropboxBlob);
     } else {
-      console.error("- error is not 401", error);
+      console.error("- no refresh token available, re-authentication required");
     }
   }
 

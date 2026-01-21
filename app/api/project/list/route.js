@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-
 import { sql } from "@vercel/postgres";
+
+export const dynamic = "force-dynamic";
 
 export async function GET(request) {
   const url = new URL(request.url);

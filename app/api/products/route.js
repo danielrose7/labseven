@@ -10,6 +10,8 @@ import {
 } from "lib/products";
 import { paginate } from "lib/utils";
 
+export const dynamic = "force-dynamic";
+
 const sortCallback = {
   default: sortProducts,
   brandAZ: sortBrand,
