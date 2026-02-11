@@ -106,13 +106,13 @@ const NoContentMessage = () => (
 const ProductCard = ({ product, productIndex, navigateTo }) => {
   if (product.isLoading) return <ProductSkeleton productIndex={productIndex} />;
 
-  const activeStyle = product.Styles[0];
+  const activeStyle = product.Styles[product.activeStyleIndex || 0];
   const showMoreStyles = product.Styles.length > 7;
 
   return (
     <div
       className={styles.ProductCard}
-      onClick={() => navigateTo(product.defaultHref)}
+      onClick={() => navigateTo(activeStyle.href)}
     >
       <span className={styles.ProductCard__frame} />
       <div className={styles.ProductCard__description}>
@@ -150,13 +150,15 @@ const ProductCard = ({ product, productIndex, navigateTo }) => {
               }`}
             >
               {product.Styles.map((style, styleIndex) => {
-                if (styleIndex > 6) return null;
+                const isActive =
+                  styleIndex === (product.activeStyleIndex || 0);
+                if (styleIndex > 6 && !isActive) return null;
 
                 return (
                   <ColorOption
                     key={styleIndex}
                     style={style}
-                    isActive={styleIndex === 0}
+                    isActive={isActive}
                   />
                 );
               })}

@@ -9,6 +9,7 @@ import {
   sortPriceLowHigh,
 } from "lib/products";
 import { paginate } from "lib/utils";
+import { productMatchesColors, findMatchingStyleIndex } from "lib/colorFilter";
 
 export const dynamic = "force-dynamic";
 
@@ -68,6 +69,13 @@ export async function GET(request) {
         product.SearchTerms.some((term) => term.includes(searchTerm))
       );
     });
+  }
+
+  const color = searchParams.get("color");
+  if (color) {
+    allProducts = allProducts
+      .filter((p) => productMatchesColors(p, [color]))
+      .map((p) => ({ ...p, activeStyleIndex: findMatchingStyleIndex(p, color) }));
   }
 
   if (sort) {

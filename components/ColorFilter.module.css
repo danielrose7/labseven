@@ -1,0 +1,83 @@
+.colorFilter {
+  padding: 1rem 0;
+}
+
+.colorFilter__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.colorFilter__tooltip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-left: 0.35rem;
+  border-radius: 50%;
+  border: 1px solid var(--lightText);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--lightText);
+  cursor: help;
+  position: relative;
+  vertical-align: middle;
+}
+
+.colorFilter__tooltipText {
+  display: none;
+  position: absolute;
+  left: calc(100% + 0.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--darkText);
+  color: #fff;
+  padding: 0.5rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+  width: 11rem;
+  white-space: normal;
+  z-index: 10;
+}
+
+.colorFilter__tooltip:hover .colorFilter__tooltipText {
+  display: block;
+}
+
+.colorFilter__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.swatch {
+  width: 1.75rem;
+  height: 1.75rem;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  background: none;
+  padding: 0;
+}
+
+.swatch.swatchActive {
+  border: 1px solid var(--lightText);
+}
+
+.swatch:hover .swatch__color {
+  box-shadow: rgb(8 36 42 / 15%) 0px 2px 8px;
+  transform: scale(1.4);
+}
+
+.swatch__color {
+  height: 1.25rem;
+  width: 1.25rem;
+  transition: transform 150ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}

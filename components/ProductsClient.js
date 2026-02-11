@@ -3,6 +3,7 @@
 import * as React from "react";
 import {
   CategoryMenu,
+  ColorFilter,
   ProductList,
   ProductsCalculator,
   SearchBar,
@@ -39,6 +40,11 @@ const ProductsClient = ({
           categories={allProductCategoryData}
           activeCategory={categoryData}
           activeSubCategory={subcategoryData}
+        />
+        <ColorFilter
+          className={productsStyles.colorFilter}
+          query={query}
+          setQuery={setQuery}
         />
         <ProductsCalculator
           className={productsStyles.ProductsCalculator}

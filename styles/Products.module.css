@@ -28,15 +28,16 @@
 
   /* lock calculator on bottom */
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr auto auto;
 }
 
 .grid__aside.grid__asideIsOpen {
-  grid-template-rows: 3rem 1fr auto;
+  grid-template-rows: 3rem 1fr auto auto;
 }
 
 .grid__aside nav,
-.grid__aside .ProductsCalculator {
+.grid__aside .ProductsCalculator,
+.grid__aside .colorFilter {
   display: none;
 }
 
@@ -45,7 +46,8 @@
 }
 
 .grid__asideIsOpen nav,
-.grid__asideIsOpen .ProductsCalculator {
+.grid__asideIsOpen .ProductsCalculator,
+.grid__asideIsOpen .colorFilter {
   display: block;
 }
 
@@ -77,13 +79,14 @@
     width: 18rem;
   }
   .grid__aside.grid__asideIsOpen {
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr auto auto;
   }
   .menuButton {
     display: none;
   }
   .grid__aside nav,
-  .grid__aside .ProductsCalculator {
+  .grid__aside .ProductsCalculator,
+  .grid__aside .colorFilter {
     display: block;
   }
 }

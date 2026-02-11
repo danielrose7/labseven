@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDebounceCallback } from "@react-hook/debounce";
 import styles from "./SearchBar.module.css";
 
-export const SEARCH_KEYS = ["q", "sort"];
+export const SEARCH_KEYS = ["q", "sort", "color"];
 
 const SearchBar = ({ query, setQuery, isLoading }) => {
   const [localSearch, setLocalSearch] = useState(query.q || "");
