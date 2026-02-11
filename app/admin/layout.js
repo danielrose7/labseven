@@ -9,8 +9,8 @@ import { getTodaysCookie } from "../log-in/utils";
 import FlashMessages from "app/flash-messages";
 import { Suspense } from "react";
 
-const AdminLayout = ({ children }) => {
-  const cookieStore = cookies();
+const AdminLayout = async ({ children }) => {
+  const cookieStore = await cookies();
   const isAdmin = cookieStore.get(getTodaysCookie())?.value === "YES";
 
   if (!isAdmin) {

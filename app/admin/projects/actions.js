@@ -91,7 +91,7 @@ export async function deleteProject(_prevState, formData) {
 }
 
 export async function purgeCache() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   cookieStore.set("flash:success", "Cache has been cleared!", { maxAge: 0 });
 
   // just in case
@@ -156,13 +156,13 @@ const validateData = async (data, projectId) => {
   return errors;
 };
 
-const handleSuccess = (verb, project) => {
+const handleSuccess = async (verb, project) => {
   const goodVibes = ["Rad", "Awesome", "Cool", "Sweet", "Nice"];
   const sampleVibe = goodVibes[Math.floor(Math.random() * goodVibes.length)];
   const message = `${sampleVibe}! ${verb} '${project.name}' (Project ID: ${project.id})`;
 
   // add flash
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   cookieStore.set("flash:success", message, { maxAge: 0 });
 
   revalidatePath("/admin/projects", "layout");

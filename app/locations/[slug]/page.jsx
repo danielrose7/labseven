@@ -26,7 +26,7 @@ const locationBanners = {
 };
 
 export async function generateMetadata({ params }) {
-  const slug = params.slug;
+  const { slug } = await params;
   const location = await getLocationData(slug);
 
   // calculate title + description
@@ -42,7 +42,7 @@ export async function generateStaticParams() {
 }
 
 const LocationPage = async ({ params }) => {
-  const slug = params.slug;
+  const { slug } = await params;
   const BannerImage = locationBanners[slug];
   if (!BannerImage) return notFound(); // need a banner and an '.md' file for each location
 

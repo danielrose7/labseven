@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { purgeCache } from "../actions";
 
 import { Button } from "components";
@@ -18,7 +19,7 @@ function PurgeCacheButton() {
 }
 
 export function PurgeCacheForm({ projectId }) {
-  const [state, formAction] = useFormState(purgeCache, initialState);
+  const [state, formAction] = useActionState(purgeCache, initialState);
 
   return (
     <form action={formAction}>

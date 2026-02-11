@@ -5,7 +5,7 @@ import Message from "./Message";
 import { cookies } from "next/headers";
 
 const FlashMessages = async () => {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
 
   const messages = ["success", "error", "warning", "info"]
     .flatMap((key) => {

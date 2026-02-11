@@ -3,7 +3,8 @@
 import { upload } from "@vercel/blob/client";
 
 import { useState } from "react";
-import { useFormStatus, useFormState } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 
 import { createProject, updateProject } from "app/admin/projects/actions";
 
@@ -151,7 +152,7 @@ export const ProjectForm = ({ initialState, submitText, projectId }) => {
   const action = projectId
     ? updateProject.bind(null, projectId)
     : createProject;
-  const [formState, formAction] = useFormState(action, initialState);
+  const [formState, formAction] = useActionState(action, initialState);
 
   return (
     <form action={formAction} className={styles.adminForm}>

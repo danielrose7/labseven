@@ -10,7 +10,7 @@ export async function adminLogin(_prevState, formData) {
   const formPassword = formData.get("password");
 
   if (formPassword === process.env.ADMIN_PASSWORD) {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     cookieStore.set(getTodaysCookie(), "YES", {
       secure: true,
       path: "/",

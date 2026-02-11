@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { deleteProject } from "../actions";
 
 import { Button } from "components";
@@ -18,7 +19,7 @@ function DeleteButton() {
 }
 
 export function RemoveProjectForm({ projectId }) {
-  const [state, formAction] = useFormState(deleteProject, initialState);
+  const [state, formAction] = useActionState(deleteProject, initialState);
 
   return (
     <form

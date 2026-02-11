@@ -7,8 +7,8 @@ import { getTodaysCookie } from "./utils";
 
 import styles from "app/admin/admin.module.css";
 
-const AdminLayout = ({ children }) => {
-  const cookieStore = cookies();
+const AdminLayout = async ({ children }) => {
+  const cookieStore = await cookies();
   const isAdmin = cookieStore.get(getTodaysCookie())?.value === "YES";
 
   if (isAdmin) {

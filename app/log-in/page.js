@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 
 import { Button } from "components";
 
@@ -10,7 +10,7 @@ import { adminLogin } from "./actions";
 import styles from "app/admin/admin.module.css";
 
 const AdminLoginPage = () => {
-  const [formState, formAction] = useFormState(adminLogin, {});
+  const [formState, formAction] = useActionState(adminLogin, {});
 
   return (
     <form className={styles.adminContainer} action={formAction}>

@@ -4,8 +4,8 @@ import { sql } from "@vercel/postgres";
 
 export const dynamic = "force-dynamic";
 
-export default async function PageWrapper({ params: { id } }) {
-  "use server";
+export default async function PageWrapper({ params }) {
+  const { id } = await params;
 
   const { rows } = await sql`SELECT * from projects WHERE id = ${id}`;
   const project = rows[0];

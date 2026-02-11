@@ -15,7 +15,8 @@ import LinkedProduct from "./LinkedProduct";
 import ProjectDescription from "./ProjectDescription";
 import { ThreeDotLoader } from "components";
 
-export default async function PageWrapper({ params: { slug } }) {
+export default async function PageWrapper({ params }) {
+  const { slug } = await params;
   const { rows } = await sql`SELECT * from projects WHERE slug = ${slug}`;
   const project = rows[0];
   if (!project) {
